@@ -1,0 +1,49 @@
+{
+	"name": "astro-vue-tailwind-template",
+	"version": "1.0.2",
+	"private": "true",
+	"description": "A free and open-source template built with Tailwind CSS, Vue and Astro",
+	"keywords": [],
+	"homepage": "https://flowbite.com",
+	"bugs": "https://github.com/themesberg/flowbite-astro-admin-dashboard/issues",
+	"repository": "https://github.com/themesberg/flowbite-astro-admin-dashboard.git",
+	"license": "MIT",
+	"author": "Bergside Inc.",
+	"contributors": [
+		"Zoltán Szőgyényi <https://twitter.com/zoltanszogyenyi>",
+		"Robert Tanislav <https://twitter.com/roberttanislav>",
+		"Julian Cataldo <https://twitter.com/Julian_Cataldo>"
+	],
+	"type": "module",
+	"scripts": {
+		"astro": "astro",
+		"build": "astro build",
+		"dev": "astro dev",
+		"preview": "astro preview",
+		"start": "astro dev"
+	},
+	"dependencies": {
+		"@astrojs/sitemap": "^2.0.2",
+		"@astrojs/tailwind": "^4.0.0",
+		"astro": "^2.10.14",
+		"flowbite": "^1.8.1",
+		"flowbite-typography": "^1.0.3",
+		"tailwind-scrollbar": "^3.0.5",
+		"tailwindcss": "^3.3.3"
+	},
+	"devDependencies": {
+		"@types/eslint": "^8.44.2",
+		"@typescript-eslint/eslint-plugin": "^6.4.1",
+		"@typescript-eslint/parser": "^6.4.1",
+		"astro-eslint-parser": "^0.15.0",
+		"eslint": "^8.47.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-airbnb-typescript": "^17.1.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-import-resolver-typescript": "^3.6.0",
+		"eslint-plugin-astro": "^0.29.0",
+		"eslint-plugin-import": "^2.28.1",
+		"eslint-plugin-prettier": "^5.0.0",
+		"eslint-plugin-tsdoc": "^0.2.17"
+	}
+}
