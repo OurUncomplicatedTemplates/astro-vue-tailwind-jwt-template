@@ -54,7 +54,6 @@ This project comes with extensive support for TypeScript, Astro, Tailwind, and V
 It is configured with sensible defaults, a bit of opinions, plus some tricks to make it plays nice together.
 
 - **TypeScript**: _strictest_ Astro's settings. Full-stack, type-safe code base
-- **ESLint**: featuring `astro-eslint-parser` + `eslint-plugin-astro`
 - **Prettier**: featuring `prettier-plugin-astro` (bundled with `astro`)
 - **Editorconfig**: conforming with prettier
 - **VS Code**: extensions recommendations, tooling settings
