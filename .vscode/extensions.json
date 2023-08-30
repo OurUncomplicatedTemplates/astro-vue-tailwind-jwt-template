@@ -3,8 +3,9 @@
 		"astro-build.astro-vscode",
 		"bradlc.vscode-tailwindcss",
 		"austenc.tailwind-docs",
-		"esbenp.prettier-vscode",
 		"editorconfig.editorconfig",
+		"vue.volar",
+		"vue.vscode-typescript-vue-plugin"
 	],
 	"unwantedRecommendations": []
 }
