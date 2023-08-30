@@ -19,15 +19,6 @@
 
 	"tailwindCSS.classAttributes": ["class", "class:list"],
 
-	/* —————————————————————————————— ESLint —————————————————————————————————— */
-	"eslint.validate": [
-		"astro" /* Using `astro-eslint-parser` + `eslint-plugin-astro` */,
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact"
-	],
-
 	/* —————————————————————————————— Prettier ———————————————————————————————— */
 	/* Add support for `prettier-plugin-astro` */
 	"prettier.documentSelectors": ["**/*.astro"],
