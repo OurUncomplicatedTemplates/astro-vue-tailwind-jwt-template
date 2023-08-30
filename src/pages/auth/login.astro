@@ -1,7 +1,11 @@
 ---
+import LayoutCommon from '../../app/LayoutCommon.astro';
 import FormSignIn from '../../modules/FormSignIn.astro';
 ---
 
-<div class="min-h-screen align-middle flex pb-[12vh]">
-	<FormSignIn />
-</div>
+<LayoutCommon>
+	<div class="min-h-screen align-middle flex">
+		<FormSignIn />
+	</div>
+</LayoutCommon>
+

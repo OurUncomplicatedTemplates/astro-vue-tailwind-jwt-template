@@ -2,7 +2,8 @@
 
 // https://docs.astro.build/en/guides/environment-variables/#intellisense-for-typescript
 interface ImportMetaEnv {
-	readonly SITE: string;
+	readonly SITE_URL: string;
+	readonly SITE_PORT: ?number;
 }
 
 interface ImportMeta {

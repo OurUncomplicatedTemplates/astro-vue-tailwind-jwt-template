@@ -1,8 +1,4 @@
 ---
-import LayoutSidebar from '../app/LayoutSidebar.astro';
-import Dashboard from '../modules/dashboard.astro';
+import { url } from '../lib/data.js';
+return Astro.redirect(url('auth/login'))
 ---
-
-<LayoutSidebar>
-	<Dashboard />
-</LayoutSidebar>

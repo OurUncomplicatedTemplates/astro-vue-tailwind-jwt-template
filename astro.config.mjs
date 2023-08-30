@@ -1,30 +1,29 @@
 import { defineConfig } from 'astro/config';
+import { loadEnv } from "vite";
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
+import vue from "@astrojs/vue";
+import vercel from "@astrojs/vercel/serverless";
 
-const DEV_PORT = 2121;
+const { SITE_URL, SITE_PORT } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
+
+const SITE = SITE_PORT ? `${SITE_URL}:${SITE_PORT}` : SITE_URL;
+const PORT = Number(SITE_PORT) || 3000;
 
 // https://astro.build/config
 export default defineConfig({
-	site: process.env.CI
-		? 'https://themesberg.github.io'
-		: `http://localhost:${DEV_PORT}`,
-	base: process.env.CI ? '/flowbite-astro-admin-dashboard' : undefined,
-
-	// output: 'server',
-
-	/* Like Vercel, Netlify,… Mimicking for dev. server */
-	// trailingSlash: 'always',
-
+	site: SITE,
+	output: 'server',
 	server: {
-		/* Dev. server only */
-		port: DEV_PORT,
+		port: PORT,
 	},
-
 	integrations: [
-		//
 		sitemap(),
 		tailwind(),
+		vue()
 	],
+	adapter: vercel({
+		analytics: true,
+	})
 });

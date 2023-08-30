@@ -1,4 +1,7 @@
 ---
+
+import { url } from "../lib/data";
+
 /* eslint max-lines: 'off' */
 ---
 
@@ -12,7 +15,7 @@
 			>
 				<li class="inline-flex items-center">
 					<a
-						href="/"
+						href={url('u')}
 						class="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white"
 					>
 						<svg
@@ -40,7 +43,7 @@
 								clip-rule="evenodd"></path></svg
 						>
 						<a
-							href="/settings"
+							href={url('u/settings')}
 							class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white"
 							>Users</a
 						>
