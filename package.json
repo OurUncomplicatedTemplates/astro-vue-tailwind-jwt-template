@@ -35,5 +35,8 @@
 		"vite": "^4.4.9",
 		"vue": "^3.3.4"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"prettier": "^3.0.3",
+		"prettier-plugin-astro": "^0.12.0"
+	}
 }

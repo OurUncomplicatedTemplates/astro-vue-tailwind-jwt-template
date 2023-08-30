@@ -1,4 +1,6 @@
 ---
 import { url } from '@lib/helpers';
-return Astro.redirect(url('auth/login'))
+
+const redirectTo = url('auth/login');
+return Astro.redirect(redirectTo, 302);
 ---
