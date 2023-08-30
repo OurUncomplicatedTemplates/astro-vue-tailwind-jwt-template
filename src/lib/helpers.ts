@@ -3,6 +3,10 @@ export function url(path = '') {
 	return `${import.meta.env.SITE}${import.meta.env.BASE_URL}${path}`;
 }
 
+export function api(path = '') {
+	return `${import.meta.env.API_URL}${path}`;
+}
+
 // TODO: Remove old local assets from git history (to make cloning snappier).
 export function asset(path: string) {
 	return `/${path}`;

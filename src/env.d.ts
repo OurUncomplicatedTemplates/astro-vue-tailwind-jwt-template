@@ -4,6 +4,7 @@
 interface ImportMetaEnv {
 	readonly SITE_URL: string;
 	readonly SITE_PORT: number | undefined;
+	readonly API_URL: string;
 }
 
 interface ImportMeta {

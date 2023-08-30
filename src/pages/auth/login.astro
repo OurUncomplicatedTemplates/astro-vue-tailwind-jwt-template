@@ -1,10 +1,10 @@
 ---
 import LayoutCommon from '@layouts/LayoutCommon.astro';
-import FormSignIn from '@components/FormSignIn.astro';
+import FormSignIn from '@components/FormSignIn.vue';
 ---
 
 <LayoutCommon>
 	<div class="min-h-screen align-middle flex">
-		<FormSignIn />
+		<FormSignIn client:load />
 	</div>
 </LayoutCommon>

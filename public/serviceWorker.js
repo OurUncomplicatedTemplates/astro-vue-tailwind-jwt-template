@@ -103,10 +103,7 @@ function processOnFetch(event) {
 
 	// We currently only want to do stuff with "real" requests: Navigation and API calls.
 	if (
-		!(
-			url.hostname === self.location.hostname &&
-			(event.request.mode === 'navigate' || event.request.url.includes('/api/'))
-		)
+		!((event.request.mode === 'navigate' || event.request.url.includes('/api/')))
 	) {
 		return fetch(event.request);
 	}
