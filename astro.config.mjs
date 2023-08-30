@@ -9,7 +9,7 @@ import vercel from "@astrojs/vercel/serverless";
 const { SITE_URL, SITE_PORT } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
 const SITE = SITE_PORT ? `${SITE_URL}:${SITE_PORT}` : SITE_URL;
-const PORT = Number(SITE_PORT) || 3000;
+const PORT = Number(SITE_PORT) || 4321;
 
 // https://astro.build/config
 export default defineConfig({
