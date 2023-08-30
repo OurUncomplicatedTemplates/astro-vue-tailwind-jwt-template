@@ -1,0 +1,8 @@
+{
+	"name": "Uncomplicated Templates",
+	"short_name": "Uncomplicated",
+	"icons": [],
+	"theme_color": "#1d4ed8",
+	"background_color": "#1d4ed8",
+	"display": "standalone"
+}

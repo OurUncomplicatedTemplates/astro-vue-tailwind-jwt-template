@@ -42,11 +42,7 @@ import SearchInput from '@components/SearchInput.astro';
 					>
 				</button>
 				<a href="/" class="flex ml-2 md:mr-24">
-					<img
-						src={asset('images/logo.svg')}
-						class="h-8 mr-3"
-						alt="Logo"
-					/>
+					<img src={asset('images/logo.svg')} class="h-8 mr-3" alt="Logo" />
 					<span
 						class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
 						>{SITE_TITLE_SHORT}</span
@@ -116,8 +112,10 @@ import SearchInput from '@components/SearchInput.astro';
 							data-dropdown-toggle="dropdown-2"
 						>
 							<span class="sr-only">Open user menu</span>
-							<div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-									<span class="font-medium text-gray-600 dark:text-gray-300">JD</span>
+							<div
+								class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
+							>
+								<span class="font-medium text-gray-600 dark:text-gray-300">JD</span>
 							</div>
 						</button>
 					</div>
@@ -127,13 +125,8 @@ import SearchInput from '@components/SearchInput.astro';
 						id="dropdown-2"
 					>
 						<div class="px-4 py-3" role="none">
-							<p class="text-sm text-gray-900 dark:text-white" role="none">
-								John Doe
-							</p>
-							<p
-								class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
-								role="none"
-							>
+							<p class="text-sm text-gray-900 dark:text-white" role="none">John Doe</p>
+							<p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
 								john.doe@example.com
 							</p>
 						</div>

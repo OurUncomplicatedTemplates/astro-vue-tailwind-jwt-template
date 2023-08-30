@@ -2,7 +2,7 @@
 // Extracted from `webdev-configs` (https://github.com/JulianCataldo/web-garden/tree/develop/configs)
 
 module.exports = {
-	printWidth: 80,
+	printWidth: 100,
 	semi: true,
 	singleQuote: true,
 	tabWidth: 2,
@@ -11,15 +11,5 @@ module.exports = {
 	// See: https://github.com/prettier/prettier/issues/7475
 	useTabs: true,
 
-	plugins: ['./node_modules/prettier-plugin-astro'],
-	overrides: [
-		{
-			files: '*.astro',
-			semi: true,
-			options: {
-				parser: 'astro',
-				printWidth: 80,
-			},
-		},
-	],
+	plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
 };

@@ -1,15 +1,11 @@
 ---
-import { url } from "@lib/helpers";
+import { url } from '@lib/helpers';
 ---
 
-<div
-	class="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900"
->
+<div class="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
 	<div class="mb-4 col-span-full xl:mb-2">
 		<nav class="flex mb-5" aria-label="Breadcrumb">
-			<ol
-				class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2"
-			>
+			<ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
 				<li class="inline-flex items-center">
 					<a
 						href={url('u')}
@@ -24,7 +20,7 @@ import { url } from "@lib/helpers";
 								d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
 							></path></svg
 						>
-						Home
+						 Home
 					</a>
 				</li>
 				<li>
@@ -58,33 +54,27 @@ import { url } from "@lib/helpers";
 								d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
 								clip-rule="evenodd"></path></svg
 						>
-						<span
-							class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500"
-							aria-current="page">Settings</span
+						<span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page"
+							>Settings</span
 						>
 					</div>
 				</li>
 			</ol>
 		</nav>
-		<h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-			User settings
-		</h1>
+		<h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">User settings</h1>
 	</div>
-	
+
 	<div class="col-span-6">
 		<div
 			class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800"
 		>
-			<h3 class="mb-4 text-xl font-semibold dark:text-white">
-				General information
-			</h3>
+			<h3 class="mb-4 text-xl font-semibold dark:text-white">General information</h3>
 			<form action="#">
 				<div class="grid grid-cols-6 gap-6">
 					<div class="col-span-6 sm:col-span-3">
 						<label
 							for="first-name"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>First Name</label
+							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label
 						>
 						<input
 							type="text"
@@ -98,8 +88,7 @@ import { url } from "@lib/helpers";
 					<div class="col-span-6 sm:col-span-3">
 						<label
 							for="last-name"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>Last Name</label
+							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label
 						>
 						<input
 							type="text"
@@ -113,8 +102,7 @@ import { url } from "@lib/helpers";
 					<div class="col-span-6 sm:col-span-3">
 						<label
 							for="country"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>Country</label
+							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label
 						>
 						<input
 							type="text"
@@ -126,9 +114,7 @@ import { url } from "@lib/helpers";
 						/>
 					</div>
 					<div class="col-span-6 sm:col-span-3">
-						<label
-							for="city"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						<label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 							>City</label
 						>
 						<input
@@ -143,8 +129,7 @@ import { url } from "@lib/helpers";
 					<div class="col-span-6 sm:col-span-3">
 						<label
 							for="address"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>Address</label
+							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label
 						>
 						<input
 							type="text"
@@ -156,9 +141,7 @@ import { url } from "@lib/helpers";
 						/>
 					</div>
 					<div class="col-span-6 sm:col-span-3">
-						<label
-							for="email"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 							>Email</label
 						>
 						<input
@@ -188,8 +171,7 @@ import { url } from "@lib/helpers";
 					<div class="col-span-6 sm:col-span-3">
 						<label
 							for="birthday"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>Birthday</label
+							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Birthday</label
 						>
 						<input
 							type="number"
@@ -216,9 +198,7 @@ import { url } from "@lib/helpers";
 						/>
 					</div>
 					<div class="col-span-6 sm:col-span-3">
-						<label
-							for="role"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						<label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 							>Role</label
 						>
 						<input
@@ -233,8 +213,7 @@ import { url } from "@lib/helpers";
 					<div class="col-span-6 sm:col-span-3">
 						<label
 							for="department"
-							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>Department</label
+							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department</label
 						>
 						<input
 							type="text"
@@ -272,9 +251,7 @@ import { url } from "@lib/helpers";
 		<div
 			class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800"
 		>
-			<h3 class="mb-4 text-xl font-semibold dark:text-white">
-				Password information
-			</h3>
+			<h3 class="mb-4 text-xl font-semibold dark:text-white">Password information</h3>
 			<form action="#">
 				<div class="grid grid-cols-6 gap-6">
 					<div class="col-span-6 sm:col-span-3">
@@ -337,7 +314,7 @@ import { url } from "@lib/helpers";
 												d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
 												clip-rule="evenodd"></path></svg
 										>
-										Upper & lower case letters
+										 Upper & lower case letters
 									</li>
 									<li class="flex items-center mb-1">
 										<svg
@@ -351,7 +328,7 @@ import { url } from "@lib/helpers";
 												d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
 												clip-rule="evenodd"></path></svg
 										>
-										A symbol (#$&)
+										 A symbol (#$&)
 									</li>
 									<li class="flex items-center">
 										<svg
@@ -365,7 +342,7 @@ import { url } from "@lib/helpers";
 												d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
 												clip-rule="evenodd"></path></svg
 										>
-										A longer password (min. 12 chars.)
+										 A longer password (min. 12 chars.)
 									</li>
 								</ul>
 							</div>
@@ -420,14 +397,10 @@ import { url } from "@lib/helpers";
 								>
 							</div>
 							<div class="flex-1 min-w-0">
-								<p
-									class="text-base font-semibold text-gray-900 truncate dark:text-white"
-								>
+								<p class="text-base font-semibold text-gray-900 truncate dark:text-white">
 									California 123.123.123.123
 								</p>
-								<p
-									class="text-sm font-normal text-gray-500 truncate dark:text-gray-400"
-								>
+								<p class="text-sm font-normal text-gray-500 truncate dark:text-gray-400">
 									Chrome on macOS
 								</p>
 							</div>
@@ -458,14 +431,10 @@ import { url } from "@lib/helpers";
 								>
 							</div>
 							<div class="flex-1 min-w-0">
-								<p
-									class="text-base font-semibold text-gray-900 truncate dark:text-white"
-								>
+								<p class="text-base font-semibold text-gray-900 truncate dark:text-white">
 									Rome 24.456.355.98
 								</p>
-								<p
-									class="text-sm font-normal text-gray-500 truncate dark:text-gray-400"
-								>
+								<p class="text-sm font-normal text-gray-500 truncate dark:text-gray-400">
 									Safari on iPhone
 								</p>
 							</div>
