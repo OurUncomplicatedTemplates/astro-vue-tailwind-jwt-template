@@ -1,6 +1,24 @@
 ---
-import { url } from '@lib/helpers';
+import { url, api } from '@lib/helpers';
 
-const redirectTo = url('auth/login');
-return Astro.redirect(redirectTo, 302);
+const authenticationHeader = Astro.request.headers.get('authorization');
+if (!authenticationHeader) {
+	return Astro.redirect(url('auth/login'));
+}
+
+const userResponse = await (
+	await fetch(api('auth/user'), {
+		method: 'GET',
+		headers: {
+			Authorization: authenticationHeader,
+		},
+	})
+).json();
+
+if (userResponse && userResponse?.statusCode === 401) {
+	console.log('401');
+	return Astro.redirect(url('auth/login'));
+}
+
+return Astro.redirect(url('u'));
 ---

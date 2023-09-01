@@ -47,6 +47,23 @@ const formFields = ref({
 
 function onSubmit() {
 	console.log(formFields.value);
+
+	fetch(api('auth/login'), {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		credentials: 'include',
+		body: JSON.stringify(formFields.value),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log('Success:', data);
+			window.location.href = url('u');
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		});
 }
 
 </script>

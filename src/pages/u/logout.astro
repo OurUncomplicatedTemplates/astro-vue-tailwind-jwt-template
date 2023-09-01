@@ -1,6 +1,6 @@
 ---
-import LayoutSidebar from '@layouts/LayoutSidebar.astro';
-import Dashboard from '@components/Dashboard.astro';
+import LayoutCommon from "@layouts/LayoutCommon.astro";
+import LogoutVue from "@components/Logout.vue";
 import { url, api } from '@lib/helpers';
 
 const authenticationHeader = Astro.request.headers.get('authorization');
@@ -22,7 +22,6 @@ if (userResponse && userResponse?.statusCode === 401) {
 	return Astro.redirect(url('auth/login'));
 }
 ---
-
-<LayoutSidebar>
-	<Dashboard />
-</LayoutSidebar>
+<LayoutCommon>
+	<LogoutVue client:only />
+</LayoutCommon>

@@ -1,6 +1,26 @@
 ---
 import LayoutSidebar from '@layouts/LayoutSidebar.astro';
 import UserSettings from '@components/UserSettings.astro';
+import { url, api } from '@lib/helpers';
+
+const authenticationHeader = Astro.request.headers.get('authorization');
+if (!authenticationHeader) {
+	return Astro.redirect(url('auth/login'));
+}
+
+const userResponse = await (
+	await fetch(api('auth/user'), {
+		method: 'GET',
+		headers: {
+			Authorization: authenticationHeader,
+		},
+	})
+).json();
+
+if (userResponse && userResponse?.statusCode === 401) {
+	console.log('401');
+	return Astro.redirect(url('auth/login'));
+}
 ---
 
 <LayoutSidebar>
