@@ -288,9 +288,7 @@ async function HandleUnAuthorizes(event, modifiedRequest) {
 	let response = await fetch(modifiedRequest);
 	event.waitUntil(response);
 
-	if ((response && response.type === 'opaqueredirect') || response.ok) {
-		await localforage.setItem(ACCESS_TOKEN, ACCESS_TOKEN_CONFIRMED_UNAUTHORIZED);
-	}
+	await localforage.setItem(ACCESS_TOKEN, ACCESS_TOKEN_CONFIRMED_UNAUTHORIZED);
 
 	return response;
 }
@@ -306,7 +304,7 @@ function addAuthHeaderToRequest(request, accessToken) {
 	const modifiedHeaders = new Headers(request.headers);
 	modifiedHeaders.append('Authorization', 'Bearer ' + accessToken);
 
-	const modifiedRequestInit = { headers: modifiedHeaders };
+	const modifiedRequestInit = { headers: modifiedHeaders};
 	return new Request(request, modifiedRequestInit);
 }
 
