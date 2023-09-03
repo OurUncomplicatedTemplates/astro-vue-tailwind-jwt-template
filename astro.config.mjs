@@ -20,6 +20,6 @@ export default defineConfig({
 	},
 	integrations: [sitemap(), tailwind(), vue()],
 	adapter: vercel({
-		analytics: true,
+		functionPerRoute: false,
 	}),
 });
