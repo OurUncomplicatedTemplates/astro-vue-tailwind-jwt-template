@@ -6,10 +6,10 @@ import tailwind from '@astrojs/tailwind';
 import vue from '@astrojs/vue';
 import vercel from '@astrojs/vercel/serverless';
 
-const { SITE_URL, SITE_PORT } = loadEnv(process.env.NODE_ENV, process.cwd(), '');
+const { PUBLIC_SITE_URL, PUBLIC_SITE_PORT } = loadEnv(process.env.NODE_ENV, process.cwd(), '');
 
-const SITE = SITE_PORT ? `${SITE_URL}:${SITE_PORT}` : SITE_URL;
-const PORT = Number(SITE_PORT) || 4321;
+const SITE = PUBLIC_SITE_PORT ? `${PUBLIC_SITE_URL}:${PUBLIC_SITE_PORT}` : PUBLIC_SITE_URL;
+const PORT = Number(PUBLIC_SITE_PORT) || 4321;
 
 // https://astro.build/config
 export default defineConfig({

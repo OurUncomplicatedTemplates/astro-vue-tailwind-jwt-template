@@ -4,7 +4,7 @@ export function url(path = '') {
 }
 
 export function api(path = '') {
-	return `http://localhost:3000/api/${path}`;
+	return `${import.meta.env.PUBLIC_API_URL}${path}`;
 }
 
 // TODO: Remove old local assets from git history (to make cloning snappier).
