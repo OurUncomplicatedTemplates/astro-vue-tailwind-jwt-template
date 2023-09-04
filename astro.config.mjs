@@ -9,14 +9,14 @@ import node from "@astrojs/node";
 const {
 	PUBLIC_SITE_URL,
 	PUBLIC_SITE_PORT,
-	TAURI_BUILD
+	NODE_BUILD
 } = loadEnv(process.env.NODE_ENV, process.cwd(), '');
 
 const SITE = PUBLIC_SITE_PORT ? `${PUBLIC_SITE_URL}:${PUBLIC_SITE_PORT}` : PUBLIC_SITE_URL;
 const PORT = Number(PUBLIC_SITE_PORT) || 4321;
 
 let adapter = vercel();
-if (TAURI_BUILD) {
+if (NODE_BUILD) {
 	adapter = node({
 		mode: "standalone"
 	});
