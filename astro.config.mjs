@@ -22,4 +22,11 @@ export default defineConfig({
 	adapter: vercel({
 		functionPerRoute: false,
 	}),
+	vite: {
+		server: {
+			watch: {
+				ignored: ['**/target/**']
+			}
+		}
+	}
 });
