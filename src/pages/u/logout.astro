@@ -17,7 +17,7 @@ const userResponse = await (
 	})
 ).json();
 
-if (userResponse && userResponse?.statusCode === 401) {
+if (!userResponse || userResponse?.statusCode === 401) {
 	return Astro.redirect(url('auth/login'));
 }
 ---

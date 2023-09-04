@@ -2,6 +2,7 @@
 import LayoutSidebar from '@layouts/LayoutSidebar.astro';
 import Dashboard from '@components/Dashboard.astro';
 import { url, api } from '@lib/helpers';
+import type { User } from '@lib/types';
 
 const authenticationHeader = Astro.request.headers.get('authorization');
 if (!authenticationHeader) {
@@ -17,11 +18,13 @@ const userResponse = await (
 	})
 ).json();
 
-if (userResponse && userResponse?.statusCode === 401) {
+if (!userResponse || userResponse?.statusCode === 401) {
 	return Astro.redirect(url('auth/login'));
 }
+
+const user = userResponse as User;
 ---
 
-<LayoutSidebar>
+<LayoutSidebar user={user}>
 	<Dashboard />
 </LayoutSidebar>

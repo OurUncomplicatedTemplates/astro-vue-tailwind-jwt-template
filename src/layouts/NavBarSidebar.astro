@@ -4,10 +4,16 @@ import { SITE_TITLE_SHORT } from '@lib/constants';
 
 import ColorModeSwitcher from '@components/ColorModeSwitcher.astro';
 import SearchInput from '@components/SearchInput.astro';
+import type { User } from '@lib/types';
+
+interface Props {
+	user: User;
+}
+const { user } = Astro.props;
 ---
 
 <nav
-	class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+	class="fixed z-30 w-full border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
 >
 	<div class="px-3 py-3 lg:px-5 lg:pl-3">
 		<div class="flex items-center justify-between">
@@ -16,11 +22,11 @@ import SearchInput from '@components/SearchInput.astro';
 					id="toggleSidebarMobile"
 					aria-expanded="true"
 					aria-controls="sidebar"
-					class="p-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+					class="cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 lg:hidden"
 				>
 					<svg
 						id="toggleSidebarMobileHamburger"
-						class="w-6 h-6"
+						class="h-6 w-6"
 						fill="currentColor"
 						viewBox="0 0 20 20"
 						xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +37,7 @@ import SearchInput from '@components/SearchInput.astro';
 					>
 					<svg
 						id="toggleSidebarMobileClose"
-						class="hidden w-6 h-6"
+						class="hidden h-6 w-6"
 						fill="currentColor"
 						viewBox="0 0 20 20"
 						xmlns="http://www.w3.org/2000/svg"
@@ -41,10 +47,10 @@ import SearchInput from '@components/SearchInput.astro';
 							clip-rule="evenodd"></path></svg
 					>
 				</button>
-				<a href="/" class="flex ml-2 md:mr-24">
-					<img src={asset('images/logo.svg')} class="h-8 mr-3" alt="Logo" />
+				<a href="/" class="ml-2 flex md:mr-24">
+					<img src={asset('images/logo.svg')} class="mr-3 h-8" alt="Logo" />
 					<span
-						class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
+						class="self-center whitespace-nowrap text-xl font-semibold dark:text-white sm:text-2xl"
 						>{SITE_TITLE_SHORT}</span
 					>
 				</a>
@@ -57,12 +63,12 @@ import SearchInput from '@components/SearchInput.astro';
 				<button
 					id="toggleSidebarMobileSearch"
 					type="button"
-					class="p-2 text-gray-500 rounded-lg lg:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+					class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:hidden"
 				>
 					<span class="sr-only">Search</span>
 					<!-- Search icon -->
 					<svg
-						class="w-6 h-6"
+						class="h-6 w-6"
 						fill="currentColor"
 						viewBox="0 0 20 20"
 						xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +82,7 @@ import SearchInput from '@components/SearchInput.astro';
 				<!-- Dropdown menu -->
 				<div
 					id="dropdownNavbar"
-					class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+					class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-600 dark:bg-gray-700"
 				>
 					<ul
 						class="py-2 text-sm text-gray-700 dark:text-gray-400"
@@ -93,7 +99,7 @@ import SearchInput from '@components/SearchInput.astro';
 					<div class="py-2">
 						<a
 							href={url('u/logout')}
-							class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+							class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
 							>Sign out</a
 						>
 					</div>
@@ -102,18 +108,18 @@ import SearchInput from '@components/SearchInput.astro';
 				<ColorModeSwitcher />
 
 				<!-- Profile -->
-				<div class="flex items-center ml-3">
+				<div class="ml-3 flex items-center">
 					<div>
 						<button
 							type="button"
-							class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+							class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
 							id="user-menu-button-2"
 							aria-expanded="false"
 							data-dropdown-toggle="dropdown-2"
 						>
 							<span class="sr-only">Open user menu</span>
 							<div
-								class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
+								class="relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600"
 							>
 								<span class="font-medium text-gray-600 dark:text-gray-300">JD</span>
 							</div>
@@ -121,13 +127,13 @@ import SearchInput from '@components/SearchInput.astro';
 					</div>
 					<!-- Dropdown menu -->
 					<div
-						class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+						class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700"
 						id="dropdown-2"
 					>
 						<div class="px-4 py-3" role="none">
-							<p class="text-sm text-gray-900 dark:text-white" role="none">John Doe</p>
-							<p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-								john.doe@example.com
+							<p class="text-sm text-gray-900 dark:text-white" role="none">{user.name}</p>
+							<p class="truncate text-sm font-medium text-gray-900 dark:text-gray-300" role="none">
+								{user.email}
 							</p>
 						</div>
 						<ul class="py-1" role="none">
