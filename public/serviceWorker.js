@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001/api/';
+const API_URL = 'http://localhost:3000/api/';
 /**
  * localForage is a fast and simple storage library for JavaScript.
  * localForage improves the offline experience of your web app

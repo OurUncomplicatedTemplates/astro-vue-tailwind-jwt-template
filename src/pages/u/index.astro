@@ -9,8 +9,6 @@ if (!authenticationHeader) {
 	return Astro.redirect(url('auth/login'));
 }
 
-console.log(authenticationHeader);
-console.log(api('auth/user'));
 const userResponse = await (
 	await fetch(api('auth/user'), {
 		method: 'GET',
