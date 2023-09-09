@@ -1,6 +1,6 @@
 {
   "build": {
-    "beforeDevCommand": "pnpm dev",
+    "beforeDevCommand": "pnpm package && pnpm dev",
     "beforeBuildCommand": "pnpm build && pnpm package",
     "devPath": "http://localhost:4321",
     "distDir": "../dist",
