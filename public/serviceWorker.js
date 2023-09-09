@@ -1,3 +1,4 @@
+const API_URL = 'http://localhost:3000/api/';
 /**
  * localForage is a fast and simple storage library for JavaScript.
  * localForage improves the offline experience of your web app
@@ -228,7 +229,7 @@ async function refreshTokens(event) {
 	});
 
 	let accessToken;
-	let refreshResponse = await fetch('http://localhost:3000/api/auth/refresh', {
+	let refreshResponse = await fetch(`${API_URL}auth/refresh`, {
 		method: 'POST',
 		signal: controller.signal,
 		credentials: 'include',

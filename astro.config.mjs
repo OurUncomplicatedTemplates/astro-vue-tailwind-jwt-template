@@ -15,7 +15,7 @@ const {
 const SITE = PUBLIC_SITE_PORT ? `${PUBLIC_SITE_URL}:${PUBLIC_SITE_PORT}` : PUBLIC_SITE_URL;
 const PORT = Number(PUBLIC_SITE_PORT) || 4321;
 
-let adapter = vercel();
+let adapter = vercel({ functionPerRoute: false});
 if (NODE_BUILD) {
 	adapter = node({
 		mode: "standalone"
