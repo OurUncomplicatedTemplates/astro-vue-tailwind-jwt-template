@@ -1,19 +1,17 @@
 [package]
-name = "tauri-app"
-version = "0.0.0"
-description = "A Tauri App"
+name = "uncomplicated"
+version = "0.0.1"
+description = "An Uncomplicated App"
 authors = ["you"]
-license = ""
-repository = ""
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.4", features = [] }
+tauri-build = { version = "1.4", features = ["codegen"] }
 
 [dependencies]
-tauri = { version = "1.4", features = ["shell-open"] }
+tauri = { version = "1.4", features = ["process-command-api", "shell-sidecar"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 

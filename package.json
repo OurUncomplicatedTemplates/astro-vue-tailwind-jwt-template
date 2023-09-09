@@ -10,12 +10,14 @@
 	"license": "MIT",
 	"author": "Kristian Binau",
 	"type": "module",
+	"bin": "./dist/server/entry.mjs",
 	"scripts": {
 		"astro": "astro",
 		"build": "node script/moveServiceWorker.js && astro build",
 		"dev": "node script/moveServiceWorker.js && astro dev",
 		"preview": "node script/moveServiceWorker.js && astro preview",
-		"start": "node script/moveServiceWorker.js && astro dev"
+		"start": "node script/moveServiceWorker.js && astro dev",
+		"package": "pkg package.json --output src-tauri/binaries/app && node script/moveBinary.js"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.2.0",
@@ -38,6 +40,8 @@
 	"devDependencies": {
 		"@tauri-apps/cli": "^1.4.0",
 		"dotenv": "^16.3.1",
+		"execa": "^8.0.1",
+		"pkg": "^5.8.1",
 		"prettier": "^3.0.3",
 		"prettier-plugin-astro": "^0.12.0",
 		"prettier-plugin-tailwindcss": "0.5.3"
