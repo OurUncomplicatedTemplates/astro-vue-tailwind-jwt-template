@@ -2,12 +2,13 @@
 import LayoutSidebar from '@layouts/LayoutSidebar.astro';
 import UserSettings from '@components/UserSettings.astro';
 import { url, api } from '@lib/helpers';
+import type { User } from '@lib/types';
 
-const authenticationHeader = Astro.request.headers.get('authorization');
-if (!authenticationHeader) {
+if (!Astro.locals.isAuthenticated) {
 	return Astro.redirect(url('auth/login'));
 }
 
+const authenticationHeader = Astro.locals.authHeader as string;
 const userResponse = await (
 	await fetch(api('auth/user'), {
 		method: 'GET',
