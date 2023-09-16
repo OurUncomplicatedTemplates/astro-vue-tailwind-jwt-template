@@ -15,23 +15,16 @@ const auth = defineMiddleware(async ({ locals, request }, next) => {
 	const rawToken = authHeader.replace('Bearer ', '');
 
 	// Import the public key.
-	const publicKey = await importSPKI(
-		import.meta.env.JWT_PUBLIC_KEY,
-		'EdDSA',
-	);
+	const publicKey = await importSPKI(import.meta.env.JWT_PUBLIC_KEY, 'EdDSA');
 
 	// Verify the token.
 	let payload;
 	try {
-		({ payload } = await jwtVerify(
-			rawToken,
-			publicKey,
-			{
-				algorithms: ['EdDSA'],
-				clockTolerance: 5,
-				requiredClaims: ['sub'],
-			},
-		));
+		({ payload } = await jwtVerify(rawToken, publicKey, {
+			algorithms: ['EdDSA'],
+			clockTolerance: 5,
+			requiredClaims: ['sub'],
+		}));
 	} catch (e) {
 		// If the token is invalid, the user is not authenticated.
 		locals.userId = null;
