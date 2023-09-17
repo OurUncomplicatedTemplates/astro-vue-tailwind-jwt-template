@@ -4,11 +4,11 @@ import Dashboard from '@components/Dashboard.astro';
 import { url, api } from '@lib/helpers';
 import type { User } from '@lib/types';
 
-const authenticationHeader = Astro.request.headers.get('authorization');
-if (!authenticationHeader) {
+if (!Astro.locals.isAuthenticated) {
 	return Astro.redirect(url('auth/login'));
 }
 
+const authenticationHeader = Astro.locals.authHeader as string;
 const userResponse = await (
 	await fetch(api('auth/user'), {
 		method: 'GET',

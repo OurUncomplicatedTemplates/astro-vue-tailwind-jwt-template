@@ -1,26 +1,13 @@
 ---
-import LayoutCommon from "@layouts/LayoutCommon.astro";
-import LogoutVue from "@components/Logout.vue";
-import { url, api } from '@lib/helpers';
+import LayoutCommon from '@layouts/LayoutCommon.astro';
+import LogoutVue from '@components/Logout.vue';
+import { url } from '@lib/helpers';
 
-const authenticationHeader = Astro.request.headers.get('authorization');
-if (!authenticationHeader) {
-	return Astro.redirect(url('auth/login'));
-}
-
-const userResponse = await (
-	await fetch(api('auth/user'), {
-		method: 'GET',
-		headers: {
-			Authorization: authenticationHeader,
-		},
-	})
-).json();
-
-if (!userResponse || userResponse?.statusCode === 401) {
+if (!Astro.locals.isAuthenticated) {
 	return Astro.redirect(url('auth/login'));
 }
 ---
+
 <LayoutCommon>
 	<LogoutVue client:only />
 </LayoutCommon>

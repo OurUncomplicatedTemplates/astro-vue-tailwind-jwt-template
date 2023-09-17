@@ -2,10 +2,10 @@
 	"extends": "astro/tsconfigs/strictest",
 	"compilerOptions": {
 		"plugins": [
-      {
-        "name": "@astrojs/ts-plugin"
-      },
-    ],
+			{
+				"name": "@astrojs/ts-plugin"
+			}
+		],
 		"baseUrl": ".",
 		"paths": {
 			"@components/*": ["src/components/*"],
@@ -14,5 +14,6 @@
 		},
 		"strictNullChecks": true,
 		"jsx": "preserve"
-	}
+	},
+	"exclude": ["src-tauri"]
 }

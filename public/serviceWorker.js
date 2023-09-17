@@ -103,12 +103,10 @@ function processOnFetch(event) {
 	const url = new URL(event.request.url);
 
 	// We currently only want to do stuff with "real" requests: Navigation and API calls.
-	if (
-		!((event.request.mode === 'navigate' || event.request.url.includes('/api/')))
-	) {
+	if (!(event.request.mode === 'navigate' || event.request.url.includes('/api/'))) {
 		return fetch(event.request);
 	}
-	console.log(event.request)
+
 	return processTokenOnFetch(event);
 }
 
@@ -136,7 +134,6 @@ async function processTokenOnFetch(event) {
 
 	// If no accessToken is set, then we should try to refresh.
 	if (accessToken === null || accessToken === undefined) {
-		console.log('No access token, trying to refresh');
 		accessToken = await refreshTokens(event);
 
 		/**
@@ -149,8 +146,6 @@ async function processTokenOnFetch(event) {
 	}
 
 	if (typeof accessToken === 'string' && accessToken !== ACCESS_TOKEN_CONFIRMED_UNAUTHORIZED) {
-		console.log('Access token is set, checking if it is expired');
-
 		// Getting the expiration of the access token
 		let accessTokenExpiration = await (async () => {
 			let decodedAndParsedJWTBody = JSON.parse(atob(accessToken.split('.')[1]));
@@ -199,8 +194,6 @@ async function processTokenOnFetch(event) {
  * @return {String} Either a valid AccessToken or ACCESS_TOKEN_CONFIRMED_UNAUTHORIZED, depending on the validity of the refresh token.
  */
 async function refreshTokens(event) {
-	console.log('Refreshing tokens');
-
 	/**
 	 * Extra check before we start a refresh.
 	 * Check if there already is one started.
@@ -235,8 +228,6 @@ async function refreshTokens(event) {
 		credentials: 'include',
 	});
 	event.waitUntil(refreshResponse);
-
-	console.log('Refresh response', refreshResponse);
 
 	/**
 	 * Refresh token is valid, and we have received a new access token
@@ -305,7 +296,7 @@ function addAuthHeaderToRequest(request, accessToken) {
 	const modifiedHeaders = new Headers(request.headers);
 	modifiedHeaders.append('Authorization', 'Bearer ' + accessToken);
 
-	const modifiedRequestInit = { headers: modifiedHeaders};
+	const modifiedRequestInit = { headers: modifiedHeaders };
 	return new Request(request, modifiedRequestInit);
 }
 

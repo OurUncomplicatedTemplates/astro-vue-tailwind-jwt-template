@@ -5,10 +5,8 @@ import { api, url } from '@lib/helpers';
 
 fetch(api('auth/logout'), {
 	method: 'POST',
-	credentials: 'include'
-})
-	.then(() => {
-		window.location.href = url();
-	})
-
+	credentials: 'include',
+}).then(() => {
+	window.location.href = url();
+});
 </script>
