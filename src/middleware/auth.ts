@@ -33,7 +33,6 @@ export const auth = defineMiddleware(async ({ locals, request }, next) => {
 		// If the token is invalid, the user is not authenticated.
 		locals.userId = null;
 		locals.isAuthenticated = false;
-		return next();
 	}
 
 	return next();
