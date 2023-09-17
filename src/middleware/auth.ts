@@ -1,7 +1,7 @@
-import { sequence, defineMiddleware } from 'astro:middleware';
+import { defineMiddleware } from 'astro:middleware';
 import { jwtVerify, importSPKI } from 'jose';
 
-const auth = defineMiddleware(async ({ locals, request }, next) => {
+export const auth = defineMiddleware(async ({ locals, request }, next) => {
 	// Get the Authorization header.
 	const authHeader = request.headers.get('Authorization');
 	if (!authHeader) {
@@ -39,4 +39,4 @@ const auth = defineMiddleware(async ({ locals, request }, next) => {
 	return next();
 });
 
-export const onRequest = sequence(auth);
+export default auth;
