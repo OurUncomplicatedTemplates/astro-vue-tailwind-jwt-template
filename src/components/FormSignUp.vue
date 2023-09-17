@@ -11,8 +11,22 @@
 		</a>
 		<!-- Card -->
 		<div class="w-full max-w-xl space-y-8 rounded-lg bg-white p-6 shadow dark:bg-gray-800 sm:p-8">
-			<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Sign in to platform</h2>
+			<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Create a Free Account</h2>
 			<form class="mt-8 space-y-6" @submit.prevent="onSubmit" ref="form">
+				<div>
+					<label for="name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+						>Name</label
+					>
+					<input
+						v-model="formFields.name"
+						type="text"
+						name="name"
+						id="name"
+						class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 sm:text-sm"
+						placeholder="John Doe"
+						required
+					/>
+				</div>
 				<div>
 					<label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 						>Your email</label
@@ -32,6 +46,7 @@
 						>Your password</label
 					>
 					<input
+						ref="password"
 						v-model="formFields.password"
 						type="password"
 						name="password"
@@ -41,30 +56,40 @@
 						required
 					/>
 				</div>
-				<div class="flex flex-wrap items-start">
-					<a
-						:href="url('auth/forgot-password')"
-						class="ml-auto mt-4 w-full text-left text-sm text-primary-700 hover:underline dark:text-primary-500"
-						>Lost Password?</a
+				<div>
+					<label
+						for="confirm-password"
+						class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+						>Confirm password</label
 					>
+					<input
+						ref="confirmPassword"
+						v-model="formFields.confirmPassword"
+						type="password"
+						name="confirm-password"
+						id="confirm-password"
+						placeholder="••••••••"
+						class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 sm:text-sm"
+						required
+					/>
 				</div>
 				<div>
 					<button
 						type="submit"
 						class="w-full rounded-lg bg-primary-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto"
 					>
-						Login to your account
+						Create account
 					</button>
 					<span v-if="errorMessage" class="mb-4 ml-2 w-full text-xs text-red-600">{{
 						errorMessage
 					}}</span>
 				</div>
 				<div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-					Not registered?
+					Already have an account?
 					<a
-						:href="url('auth/register')"
+						:href="url('auth/login')"
 						class="text-primary-700 hover:underline dark:text-primary-500"
-						>Create account</a
+						>Login here</a
 					>
 				</div>
 			</form>
@@ -78,9 +103,14 @@ import { SITE_TITLE_SHORT } from '@lib/constants';
 import { ref } from 'vue';
 
 const form = ref<HTMLFormElement>();
+const password = ref<HTMLInputElement>();
+const confirmPassword = ref<HTMLInputElement>();
+
 const formFields = ref({
+	name: 'John Doe',
 	email: 'test@test.com',
 	password: 'test@test.com',
+	confirmPassword: 'test@test.com',
 });
 
 const errorMessage = ref<null | string>(null);
@@ -90,17 +120,29 @@ function onSubmit() {
 
 	errorMessage.value = null;
 
-	fetch(api('auth/login'), {
+	if (formFields.value.password !== formFields.value.confirmPassword) {
+		errorMessage.value = 'Passwords do not match';
+	}
+
+	if (!form.value?.checkValidity() || errorMessage.value) {
+		form.value?.reportValidity();
+		return;
+	}
+
+	fetch(api('auth/register'), {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		credentials: 'include',
-		body: JSON.stringify(formFields.value),
+		body: JSON.stringify({
+			name: formFields.value.name,
+			email: formFields.value.email,
+			password: formFields.value.password,
+		}),
 	})
 		.then(async (response) => {
 			if (!response.ok) {
-				if (response.status !== 400) {
+				if (response.status === 400) {
 					const json = await response.json();
 					errorMessage.value = json.message;
 
@@ -114,7 +156,7 @@ function onSubmit() {
 		})
 		.then((data) => {
 			console.log('Success:', data);
-			window.location.href = url('u');
+			window.location.href = url('auth/login');
 		})
 		.catch((error) => {
 			console.error('Error:', error);

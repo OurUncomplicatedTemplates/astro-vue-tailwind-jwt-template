@@ -1,6 +1,6 @@
 ---
 import LayoutCommon from '@layouts/LayoutCommon.astro';
-import FormSignUp from '@components/FormSignUp.astro';
+import FormSignUp from '@components/FormSignUp.vue';
 import { url } from '@lib/helpers';
 
 if (Astro.locals.isAuthenticated) {
@@ -10,6 +10,6 @@ if (Astro.locals.isAuthenticated) {
 
 <LayoutCommon>
 	<div class="flex min-h-screen align-middle">
-		<FormSignUp />
+		<FormSignUp client:load />
 	</div>
 </LayoutCommon>
