@@ -13,34 +13,22 @@
 		<div class="w-full max-w-xl space-y-8 rounded-lg bg-white p-6 shadow dark:bg-gray-800 sm:p-8">
 			<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Sign in to platform</h2>
 			<form class="mt-8 space-y-6" @submit.prevent="onSubmit" ref="form">
-				<div>
-					<label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-						>Your email</label
-					>
-					<input
-						v-model="formFields.email"
-						type="email"
-						name="email"
-						id="email"
-						class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 sm:text-sm"
-						placeholder="name@company.com"
-						required
-					/>
-				</div>
-				<div>
-					<label for="password" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-						>Your password</label
-					>
-					<input
-						v-model="formFields.password"
-						type="password"
-						name="password"
-						id="password"
-						placeholder="••••••••"
-						class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 sm:text-sm"
-						required
-					/>
-				</div>
+				<BaseInput
+					v-model="formFields.email"
+					type="email"
+					id="email"
+					placeholder="name@company.com"
+					required
+					>Your email</BaseInput
+				>
+				<BaseInput
+					v-model="formFields.password"
+					type="password"
+					id="password"
+					placeholder="••••••••"
+					required
+					>Your password</BaseInput
+				>
 				<div class="flex flex-wrap items-start">
 					<a
 						:href="url('auth/forgot-password')"
@@ -48,17 +36,8 @@
 						>Lost Password?</a
 					>
 				</div>
-				<div>
-					<button
-						type="submit"
-						class="w-full rounded-lg bg-primary-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto"
-					>
-						Login to your account
-					</button>
-					<span v-if="errorMessage" class="mb-4 ml-2 w-full text-xs text-red-600">{{
-						errorMessage
-					}}</span>
-				</div>
+				<BaseButton type="submit" color="primary">Login to your account</BaseButton>
+				<BaseAlert v-if="errorMessage" type="danger">{{ errorMessage }}</BaseAlert>
 				<div class="text-sm font-medium text-gray-500 dark:text-gray-400">
 					Not registered?
 					<a
@@ -73,21 +52,23 @@
 </template>
 
 <script setup lang="ts">
+import BaseInput from './base/input.vue';
+import BaseButton from './base/button.vue';
+import BaseAlert from './base/alert.vue';
+
 import { asset, api, url } from '@lib/helpers';
 import { SITE_TITLE_SHORT } from '@lib/constants';
 import { ref } from 'vue';
 
 const form = ref<HTMLFormElement>();
 const formFields = ref({
-	email: 'test@test.com',
-	password: 'test@test.com',
+	email: '',
+	password: '',
 });
 
 const errorMessage = ref<null | string>(null);
 
 function onSubmit() {
-	console.log(formFields.value);
-
 	errorMessage.value = null;
 
 	fetch(api('auth/login'), {
@@ -100,7 +81,7 @@ function onSubmit() {
 	})
 		.then(async (response) => {
 			if (!response.ok) {
-				if (response.status !== 400) {
+				if (response.status === 401) {
 					const json = await response.json();
 					errorMessage.value = json.message;
 
