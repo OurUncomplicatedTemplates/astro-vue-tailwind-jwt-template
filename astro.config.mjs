@@ -15,7 +15,7 @@ const { PUBLIC_SITE_URL, PUBLIC_SITE_PORT, NODE_BUILD } = loadEnv(
 const SITE = PUBLIC_SITE_PORT ? `${PUBLIC_SITE_URL}:${PUBLIC_SITE_PORT}` : PUBLIC_SITE_URL;
 const PORT = Number(PUBLIC_SITE_PORT) || 4321;
 
-let adapter = vercel({ functionPerRoute: false });
+let adapter = vercel();
 if (NODE_BUILD) {
 	adapter = node({
 		mode: 'standalone',
