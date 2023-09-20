@@ -36,8 +36,8 @@
 						>Lost Password?</a
 					>
 				</div>
-				<BaseButton type="submit" color="primary">Login to your account</BaseButton>
-				<BaseAlert v-if="errorMessage" type="danger">{{ errorMessage }}</BaseAlert>
+				<BaseButton type="submit" :color="ButtonColor.Primary">Login to your account</BaseButton>
+				<BaseAlert v-if="errorMessage" :type="AlertType.Danger">{{ errorMessage }}</BaseAlert>
 				<div class="text-sm font-medium text-gray-500 dark:text-gray-400">
 					Not registered?
 					<a
@@ -53,8 +53,8 @@
 
 <script setup lang="ts">
 import BaseInput from './base/input.vue';
-import BaseButton from './base/button.vue';
-import BaseAlert from './base/alert.vue';
+import BaseButton, { ButtonColor } from './base/button.vue';
+import BaseAlert, { AlertType } from './base/alert.vue';
 
 import { asset, api, url } from '@lib/helpers';
 import { SITE_TITLE_SHORT } from '@lib/constants';

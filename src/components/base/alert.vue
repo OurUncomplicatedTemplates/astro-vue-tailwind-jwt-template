@@ -2,16 +2,7 @@
 	<div
 		class="mt-6 flex items-center rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-gray-700 dark:text-red-400"
 		role="alert"
-		:class="[
-			props.type === 'info' ? 'bg-blue-50 text-blue-800 dark:bg-gray-700 dark:text-blue-400' : '',
-			props.type === 'danger' ? 'bg-red-50 text-red-800 dark:bg-gray-700 dark:text-red-400' : '',
-			props.type === 'success'
-				? 'bg-green-50 text-green-800 dark:bg-gray-700 dark:text-green-400'
-				: '',
-			props.type === 'warning'
-				? 'bg-yellow-50 text-yellow-800 dark:bg-gray-700 dark:text-yellow-400'
-				: '',
-		]"
+		:class="buttonClasses"
 	>
 		<svg
 			class="mr-3 inline h-4 w-4 flex-shrink-0"
@@ -28,12 +19,34 @@
 	</div>
 </template>
 
+<script lang="ts">
+export enum AlertType {
+	Info = 'info',
+	Danger = 'danger',
+	Success = 'success',
+	Warning = 'warning',
+}
+</script>
+
 <script setup lang="ts">
-import type { PropType } from 'vue';
+import { computed, type PropType } from 'vue';
+
+const buttonClasses = computed(() => {
+	switch (props.type) {
+		case AlertType.Info:
+			return 'bg-blue-50 text-blue-800 dark:bg-gray-700 dark:text-blue-400';
+		case AlertType.Danger:
+			return 'bg-red-50 text-red-800 dark:bg-gray-700 dark:text-red-400';
+		case AlertType.Success:
+			return 'bg-green-50 text-green-800 dark:bg-gray-700 dark:text-green-400';
+		case AlertType.Warning:
+			return 'bg-yellow-50 text-yellow-800 dark:bg-gray-700 dark:text-yellow-400';
+	}
+});
 
 const props = defineProps({
 	type: {
-		type: String as PropType<'info' | 'danger' | 'success' | 'warning'>,
+		type: String as PropType<AlertType>,
 		required: true,
 	},
 });
