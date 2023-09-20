@@ -32,7 +32,7 @@
 				<div class="flex flex-wrap items-start">
 					<a
 						:href="url('auth/forgot-password')"
-						class="ml-auto mt-4 w-full text-left text-sm text-primary-700 hover:underline dark:text-primary-500"
+						class="mt-4 text-left text-sm text-primary-700 hover:underline dark:text-primary-500"
 						>Lost Password?</a
 					>
 				</div>
@@ -81,7 +81,7 @@ function onSubmit() {
 	})
 		.then(async (response) => {
 			if (!response.ok) {
-				if (response.status === 401) {
+				if (response.status === 401 || response.status === 400) {
 					const json = await response.json();
 					errorMessage.value = json.message;
 
