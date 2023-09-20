@@ -11,8 +11,17 @@
 		</a>
 		<!-- Card -->
 		<div class="w-full max-w-xl space-y-8 rounded-lg bg-white p-6 shadow dark:bg-gray-800 sm:p-8">
-			<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Sign in to platform</h2>
+			<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Create a Free Account</h2>
 			<form class="mt-8 space-y-6" @submit.prevent="onSubmit" ref="form">
+				<BaseInput
+					v-model="formFields.name"
+					type="text"
+					id="name"
+					placeholder="John Doe"
+					min="1"
+					required
+					>Name</BaseInput
+				>
 				<BaseInput
 					v-model="formFields.email"
 					type="email"
@@ -26,24 +35,27 @@
 					type="password"
 					id="password"
 					placeholder="••••••••"
+					min="8"
 					required
 					>Your password</BaseInput
 				>
-				<div class="flex flex-wrap items-start">
-					<a
-						:href="url('auth/forgot-password')"
-						class="ml-auto mt-4 w-full text-left text-sm text-primary-700 hover:underline dark:text-primary-500"
-						>Lost Password?</a
-					>
-				</div>
-				<BaseButton type="submit" :color="ButtonColor.Primary">Login to your account</BaseButton>
+				<BaseInput
+					v-model="formFields.confirmPassword"
+					type="password"
+					id="confirm-password"
+					placeholder="••••••••"
+					min="8"
+					required
+					>Confirm password</BaseInput
+				>
+				<BaseButton type="submit" :color="ButtonColor.Primary">Create account</BaseButton>
 				<BaseAlert v-if="errorMessage" :type="AlertType.Danger">{{ errorMessage }}</BaseAlert>
 				<div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-					Not registered?
+					Already have an account?
 					<a
-						:href="url('auth/register')"
+						:href="url('auth/login')"
 						class="text-primary-700 hover:underline dark:text-primary-500"
-						>Create account</a
+						>Login here</a
 					>
 				</div>
 			</form>
@@ -62,8 +74,10 @@ import { ref } from 'vue';
 
 const form = ref<HTMLFormElement>();
 const formFields = ref({
+	name: '',
 	email: '',
 	password: '',
+	confirmPassword: '',
 });
 
 const errorMessage = ref<null | string>(null);
@@ -71,17 +85,29 @@ const errorMessage = ref<null | string>(null);
 function onSubmit() {
 	errorMessage.value = null;
 
-	fetch(api('auth/login'), {
+	if (formFields.value.password !== formFields.value.confirmPassword) {
+		errorMessage.value = 'Passwords do not match';
+	}
+
+	if (!form.value?.checkValidity() || errorMessage.value) {
+		form.value?.reportValidity();
+		return;
+	}
+
+	fetch(api('auth/register'), {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		credentials: 'include',
-		body: JSON.stringify(formFields.value),
+		body: JSON.stringify({
+			name: formFields.value.name,
+			email: formFields.value.email,
+			password: formFields.value.password,
+		}),
 	})
 		.then(async (response) => {
 			if (!response.ok) {
-				if (response.status === 401) {
+				if (response.status === 400) {
 					const json = await response.json();
 					errorMessage.value = json.message;
 
@@ -95,10 +121,10 @@ function onSubmit() {
 		})
 		.then((data) => {
 			console.log('Success:', data);
-			window.location.href = url('u');
+			window.location.href = url('auth/login');
 		})
 		.catch((error) => {
-			console.error('Error:', error);
+			console.error('Error: ', error);
 		});
 }
 </script>
