@@ -1,5 +1,10 @@
 /// <reference types="astro/client" />
 
+interface User {
+	name: string;
+	email: string;
+}
+
 // https://docs.astro.build/en/guides/environment-variables/#intellisense-for-typescript
 interface ImportMetaEnv {
 	readonly PUBLIC_SITE_URL: string;
@@ -18,5 +23,6 @@ declare namespace App {
 		authHeader: string | undefined;
 		userId: string | null;
 		isAuthenticated: boolean;
+		user: User | null;
 	}
 }

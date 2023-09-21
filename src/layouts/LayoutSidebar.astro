@@ -1,18 +1,12 @@
 ---
-import type { User } from '@lib/types';
 import FooterSidebar from './FooterSidebar.astro';
 import LayoutCommon from './LayoutCommon.astro';
 import NavBarSidebar from './NavBarSidebar.astro';
 import SideBar from './SideBar.astro';
-
-interface Props {
-  user: User;
-}
-const { user } = Astro.props;
 ---
 
 <LayoutCommon>
-	<NavBarSidebar user={user}/>
+	<NavBarSidebar/>
 
 	<SideBar />
 

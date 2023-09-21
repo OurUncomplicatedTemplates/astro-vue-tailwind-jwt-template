@@ -4,12 +4,8 @@ import SearchInput from '@components/SearchInput.astro';
 
 import { asset, url } from '@lib/helpers';
 import { SITE_TITLE_SHORT } from '@lib/constants';
-import type { User } from '@lib/types';
 
-interface Props {
-	user: User;
-}
-const { user } = Astro.props;
+const user = Astro.locals.user as User;
 
 const userInitials = (() => {
 	const rgx = new RegExp(/(\p{L}{1})\p{L}+/, 'gu');
