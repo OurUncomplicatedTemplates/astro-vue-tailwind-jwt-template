@@ -13,6 +13,7 @@
 			"@lib/*": ["src/lib/*"]
 		},
 		"strictNullChecks": true,
+		"verbatimModuleSyntax": true,
 		"jsx": "preserve"
 	},
 	"exclude": ["src-tauri"]
