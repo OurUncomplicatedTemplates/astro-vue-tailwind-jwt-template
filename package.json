@@ -11,7 +11,7 @@
 	"author": "Kristian Binau",
 	"type": "module",
 	"scripts": {
-		"astro": "astro",
+		    "astro": "astro",
 		"build": "node script/moveServiceWorker.js && astro build",
 		"dev": "node script/moveServiceWorker.js && astro dev",
 		"preview": "node script/moveServiceWorker.js && astro preview",

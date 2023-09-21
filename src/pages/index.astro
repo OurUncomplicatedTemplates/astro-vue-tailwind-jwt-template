@@ -1,7 +1,7 @@
 ---
 import { url } from '@lib/helpers';
 
-if (Astro.locals.isAuthenticated  ) {
+if (Astro.locals.isAuthenticated) {
 	return Astro.redirect(url('u'));
 } else {
 	return Astro.redirect(url('auth/login'));

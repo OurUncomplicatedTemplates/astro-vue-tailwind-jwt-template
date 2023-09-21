@@ -105,9 +105,12 @@ function onSubmit() {
 			password: formFields.value.password,
 		}),
 	})
-		.then(async (response) => {
+		.then(
+			async ( response ) => {
 			if (!response.ok) {
-				if (response.status === 400) {
+				if (
+				response.status === 400
+				) {
 					const json = await response.json();
 					errorMessage.value = json.message;
 
