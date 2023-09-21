@@ -5,13 +5,11 @@
 
   Please look at the following checklist to ensure that your PR can be accepted quickly:
 -->
-
 ## Description
-
 <!--- Describe your changes in detail -->
 
-## Type of Change
 
+## Type of Change
 <!--- Put an `x` in all the boxes that apply: -->
 
 - [ ] ✨ New feature (non-breaking change which adds functionality)
