@@ -1,14 +1,22 @@
-name: Check
+name: Build
 on:
   pull_request:
     branches:
       - master
 jobs:
-  check:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18]
+    env:
+      PUBLIC_SITE_URL: 'http://localhost'
+      PUBLIC_SITE_PORT: 4321
+      PUBLIC_API_URL: 'http://localhost:3000/api/'
+      JWT_PUBLIC_KEY: |
+        -----BEGIN PUBLIC KEY-----
+        MCowBQYDK2VwAyEA/nqSs2DZmox+sRNR9d9XdaO3C2yJABIO5gdJlBcswNI=
+        -----END PUBLIC KEY-----
     steps:
       - uses: actions/checkout@v3
 
@@ -26,5 +34,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run Check
-        run: pnpm run check
+      - name: Run Build
+        run: pnpm run build
