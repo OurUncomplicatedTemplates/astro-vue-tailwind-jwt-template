@@ -1,6 +1,7 @@
 ---
 import LayoutCommon from '@layouts/LayoutCommon.astro';
 import LogoutVue from '@components/Logout.vue';
+// @ts-ignore https://github.com/withastro/language-tools/issues/476
 import { url } from '@lib/helpers';
 
 if (!Astro.locals.isAuthenticated) {

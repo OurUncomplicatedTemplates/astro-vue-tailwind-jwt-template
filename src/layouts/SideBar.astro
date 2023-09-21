@@ -5,31 +5,31 @@ import { url } from '@lib/helpers';
 <!-- TODO: Dynamic dropdowns -->
 <aside
 	id="sidebar"
-	class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 w-64 h-full hidden pt-16 font-normal duration-75 lg:flex transition-width"
+	class="fixed left-0 top-0 z-20 flex hidden h-full w-64 flex-shrink-0 flex-col pt-16 font-normal transition-width duration-75 lg:flex"
 	aria-label="Sidebar"
 >
 	<div
-		class="relative flex flex-col flex-1 min-h-0 pt-0 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+		class="relative flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white pt-0 dark:border-gray-700 dark:bg-gray-800"
 	>
 		<div
 			class:list={[
-				'flex flex-col flex-1 pt-5 pb-28 overflow-y-auto',
-				'scrollbar scrollbar-w-2 scrollbar-thumb-rounded-[0.1667rem]',
-				'scrollbar-thumb-slate-200 scrollbar-track-gray-400',
-				'dark:scrollbar-thumb-slate-900 dark:scrollbar-track-gray-800',
+				'flex flex-1 flex-col overflow-y-auto pb-28 pt-5',
+				'scrollbar scrollbar-thumb-rounded-[0.1667rem] scrollbar-w-2',
+				'scrollbar-track-gray-400 scrollbar-thumb-slate-200',
+				'dark:scrollbar-track-gray-800 dark:scrollbar-thumb-slate-900',
 			]}
 		>
 			<div
-				class="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
+				class="flex-1 space-y-1 divide-y divide-gray-200 bg-white px-3 dark:divide-gray-700 dark:bg-gray-800"
 			>
-				<ul class="pb-2 space-y-2">
+				<ul class="space-y-2 pb-2">
 					<li>
 						<form action="#" method="GET" class="lg:hidden">
 							<label for="mobile-search" class="sr-only">Search</label>
 							<div class="relative">
-								<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+								<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
 									<svg
-										class="w-5 h-5 text-gray-500"
+										class="h-5 w-5 text-gray-500"
 										fill="currentColor"
 										viewBox="0 0 20 20"
 										xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ import { url } from '@lib/helpers';
 									type="text"
 									name="email"
 									id="mobile-search"
-									class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-primary-500 dark:focus:border-primary-500"
+									class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
 									placeholder="Search"
 								/>
 							</div>
@@ -53,10 +53,10 @@ import { url } from '@lib/helpers';
 					<li>
 						<a
 							href={url('u')}
-							class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+							class="group flex items-center rounded-lg p-2 text-base text-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
 						>
 							<svg
-								class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+								class="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
 								fill="currentColor"
 								viewBox="0 0 20 20"
 								xmlns="http://www.w3.org/2000/svg"
@@ -71,10 +71,10 @@ import { url } from '@lib/helpers';
 						<!-- {{ if eq $page_slug "settings" }} -->
 						<a
 							href={url('u/settings')}
-							class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+							class="group flex items-center rounded-lg p-2 text-base text-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
 						>
 							<svg
-								class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+								class="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
 								fill="currentColor"
 								viewBox="0 0 20 20"
 								xmlns="http://www.w3.org/2000/svg"

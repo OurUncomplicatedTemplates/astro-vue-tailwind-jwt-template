@@ -1,8 +1,9 @@
 ---
+// @ts-ignore https://github.com/withastro/language-tools/issues/476
 import { url } from '@lib/helpers';
 
 if (Astro.locals.isAuthenticated) {
-	return Astro.redirect(url('u'));
+		return Astro.redirect(url('u'));
 } else {
 	return Astro.redirect(url('auth/login'));
 }
