@@ -4,7 +4,11 @@
 		<div class="relative">
 			<input
 				:id="props.id"
-				class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 invalid:ring-2 invalid:ring-red-500 focus:border-primary-500 focus:ring-primary-500 invalid:focus:ring-red-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 sm:text-sm"
+				:class="{
+					'border-red-500 ring-1 ring-red-500 focus:border-red-600 focus:ring-red-600 dark:border-red-500 dark:ring-red-500 dark:focus:border-red-600 dark:focus:ring-red-600':
+						props.errorText,
+				}"
+				class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 sm:text-sm"
 				:type="getType"
 				:value="props.modelValue"
 				:min="props.min"
@@ -12,6 +16,7 @@
 				@input="updateValue"
 				@change="change"
 				:placeholder="props.placeholder"
+				:required="props.required"
 				ref="input"
 			/>
 			<div
@@ -85,11 +90,11 @@ const props = defineProps({
 	},
 	min: {
 		type: String,
-		default: '',
+		default: null,
 	},
 	step: {
 		type: String,
-		default: 'any',
+		default: null,
 	},
 	autoFocus: {
 		type: Boolean,
@@ -101,6 +106,10 @@ const props = defineProps({
 	},
 	errorText: {
 		type: String,
+	},
+	required: {
+		type: Boolean,
+		default: false,
 	},
 });
 

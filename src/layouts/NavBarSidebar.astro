@@ -1,15 +1,45 @@
 ---
+import ColorModeSwitcher from '@components/ColorModeSwitcher.astro';
+import SearchInput from '@components/SearchInput.astro';
+
 import { asset, url } from '@lib/helpers';
 import { SITE_TITLE_SHORT } from '@lib/constants';
 
-import ColorModeSwitcher from '@components/ColorModeSwitcher.astro';
-import SearchInput from '@components/SearchInput.astro';
-import type { User } from '@lib/types';
+const user = Astro.locals.user as User;
 
-interface Props {
-	user: User;
-}
-const { user } = Astro.props;
+const userInitials = (() => {
+	const rgx = new RegExp(/(\p{L}{1})\p{L}+/, 'gu');
+
+	const initialsRegex = [...user.name.matchAll(rgx)] || [];
+
+	return ((initialsRegex.shift()?.[1] || '') + (initialsRegex.pop()?.[1] || '')).toUpperCase();
+})();
+
+const colours = [
+	'#ef4444', // red-500
+	'#f97316', // orange-500
+	'#f59e0b', // amber-500
+	'#eab308', // yellow-500
+	'#84cc16', // lime-500
+	'#22c55e', // green-500
+	'#10b981', // emerald-500
+	'#14b8a6', // teal-500
+	'#06b6d4', // cyan-500
+	'#0ea5e9', // sky-500
+	'#3b82f6', // blue-500
+	'#6366f1', // indigo-500
+	'#8b5cf6', // violet-500
+	'#a855f7', // purple-500
+	'#d946ef', // fuchsia-500
+	'#ec4899', // pink-500
+	'#f43f5e', // rose-500
+];
+
+const userColors = (() => {
+	const charCode = userInitials.charCodeAt(0) + userInitials.charCodeAt(1) || 0;
+
+	return colours[charCode % colours.length];
+})();
 ---
 
 <nav
@@ -119,9 +149,12 @@ const { user } = Astro.props;
 						>
 							<span class="sr-only">Open user menu</span>
 							<div
-								class="relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600"
+								style={{ backgroundColor: userColors }}
+								class="relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full"
 							>
-								<span class="font-medium text-gray-600 dark:text-gray-300">JD</span>
+								<span class="font-medium text-neutral-100 dark:text-neutral-950">
+									{userInitials}
+								</span>
 							</div>
 						</button>
 					</div>

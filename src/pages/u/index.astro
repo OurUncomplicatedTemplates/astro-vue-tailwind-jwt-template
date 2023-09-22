@@ -1,29 +1,9 @@
 ---
 import LayoutSidebar from '@layouts/LayoutSidebar.astro';
 import Dashboard from '@components/Dashboard.astro';
-// @ts-ignore https://github.com/withastro/language-tools/issues/476
-import { url, api } from '@lib/helpers';
-import type { User } from '@lib/types';
 
-if (!Astro.locals.isAuthenticated) {
-	return Astro.redirect(url('auth/login'));
-}
-
-const authenticationHeader = Astro.locals.authHeader as string;
-const userResponse = await (
-	await fetch(api('auth/user'), {
-		method: 'GET',
-		headers: {
-			Authorization: authenticationHeader,
-		},
-	})
-).json();
-
-if (!userResponse || userResponse?.statusCode === 401) {
-	return Astro.redirect(url('auth/login'));
-}
-
-const user = userResponse as User;
+// We can safely cast this as we know that middleware would have already checked for a valid user
+const user = Astro.locals.user as User;
 ---
 
 <LayoutSidebar user={user}>
