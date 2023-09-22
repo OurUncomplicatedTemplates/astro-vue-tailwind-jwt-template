@@ -15,7 +15,9 @@
 		"build": "node script/moveServiceWorker.js && astro build",
 		"dev": "node script/moveServiceWorker.js && astro dev",
 		"preview": "node script/moveServiceWorker.js && astro preview",
-		"start": "node script/moveServiceWorker.js && astro dev"
+		"start": "node script/moveServiceWorker.js && astro dev",
+		"format": "prettier --write . --plugin prettier-plugin-astro --plugin prettier-plugin-tailwindcss",
+		"check": "astro check --minimumFailingSeverity=warning"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.2.0",

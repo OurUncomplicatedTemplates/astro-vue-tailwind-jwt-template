@@ -3,7 +3,7 @@ import LayoutSidebar from '@layouts/LayoutSidebar.astro';
 import Dashboard from '@components/Dashboard.astro';
 
 // We can safely cast this as we know that middleware would have already checked for a valid user
-const user = Astro.locals.user as User; 
+const user = Astro.locals.user as User;
 ---
 
 <LayoutSidebar user={user}>
