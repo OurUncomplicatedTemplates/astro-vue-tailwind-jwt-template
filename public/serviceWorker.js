@@ -100,13 +100,6 @@ self.addEventListener('fetch', (event) => {
  * @return {Promise<Response>}
  */
 function processOnFetch(event) {
-	const url = new URL(event.request.url);
-
-	// We currently only want to do stuff with "real" requests: Navigation and API calls.
-	if (!(event.request.mode === 'navigate' || event.request.url.includes('/api/'))) {
-		return fetch(event.request);
-	}
-
 	return processTokenOnFetch(event);
 }
 

@@ -4,16 +4,16 @@ import { url } from '@lib/helpers';
 
 import { SITE_TITLE } from '@lib/constants';
 
-const { class: clazz } = Astro.props;
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{SITE_TITLE}</title>
-
+		<ViewTransitions />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={pkg.description} />
 		<link rel="icon" type="image/svg+xml" href={url('images/favicon.svg')} />
@@ -155,24 +155,30 @@ const { class: clazz } = Astro.props;
 				});
 			}
 
-			registerServiceWorker();
+			document.addEventListener(
+				'astro:page-load',
+				() => {
+					registerServiceWorker();
+				},
+				{ once: true },
+			);
 		</script>
 		<script is:inline>
-			if (
-				localStorage.getItem('color-theme') === 'dark' ||
-				(!('color-theme' in localStorage) &&
-					window.matchMedia('(prefers-color-scheme: dark)').matches)
-			) {
-				document.documentElement.classList.add('dark');
-			} else {
-				document.documentElement.classList.remove('dark');
-			}
+			document.addEventListener('astro:page-load', () => {
+				if (
+					localStorage.getItem('color-theme') === 'dark' ||
+					(!('color-theme' in localStorage) &&
+						window.matchMedia('(prefers-color-scheme: dark)').matches)
+				) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			});
 		</script>
 	</head>
 	<body
 		class:list={[
-			//
-			clazz,
 			'bg-gray-50 dark:bg-gray-800',
 			'scrollbar scrollbar-thumb-rounded-[0.25rem] scrollbar-w-3',
 			'scrollbar-track-slate-200  scrollbar-thumb-gray-400',
@@ -180,11 +186,12 @@ const { class: clazz } = Astro.props;
 		]}
 	>
 		<slot />
-	</body><script>
-		import 'flowbite';
-	</script>
+		<script>
+			import 'flowbite';
+		</script>
 
-	<style is:global>
-		@import url('https://fonts.cdnfonts.com/css/inter');
-	</style>
+		<style is:global>
+			@import url('https://fonts.cdnfonts.com/css/inter');
+		</style>
+	</body>
 </html>
