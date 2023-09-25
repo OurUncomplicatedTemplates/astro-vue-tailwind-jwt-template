@@ -5,6 +5,7 @@ on:
       - master
 jobs:
   check:
+    name: Check
     runs-on: ubuntu-latest
     strategy:
       matrix:
